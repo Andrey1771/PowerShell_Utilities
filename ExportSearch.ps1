@@ -4,14 +4,15 @@ $path =  "C:\LAST_FIX_SHARED_LIB\VisiologyDesigner\libs\dashboards\data-access-v
 $pathToInput = "C:\LAST_FIX_SHARED_LIB\VisiologyDesigner\libs\dashboards\data-access-viewer-integration\src\index.ts"
 # Паттерн поиска
 $patternOfSearch = "export{1}[A-Za-z0-9-_ ]+"
-
+# Расширения файлов, в которых будет производиться поиск
+$includeFiles = "*.ts"
 
 # Содержимое папки, в которую будет производиться запись
 $data = (Get-Content -Encoding UTF8 -Path $pathToInput -raw)
 
 foreach ($file in $infolder)
 {
-    $result = Select-String $file -Pattern $patternOfSearch -Include "*.ts"
+    $result = Select-String $file -Pattern $patternOfSearch -Include $includeFiles
 
     foreach ($textLine in $result)
     {
